@@ -32,12 +32,14 @@
 ;; (setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'regular))
 
 (setq doom-font (font-spec :family "Iosevka" :size 32 :weight 'regular))
+(setq doom-symbol-font (font-spec :family "Noto Color Emoji" :size 32 :weight 'regular))
+
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 ;; (setq doom-theme 'doom-one)
-;; (setq doom-theme 'doom-ayu-light)
+;; (setq doom-theme 'doom-one-light)
 (setq doom-theme 'doom-tomorrow-day)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
@@ -82,18 +84,155 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
-;; bigger latex fragment
-(setq org-format-latex-options (plist-put org-format-latex-options :scale 3.0))
-;;
-;; auto-toggle org latex fragment
-(add-hook 'org-mode-hook 'org-fragtog-mode)
-;;
+;; = Org Mode ==================================================================
+(after! org
+  ;; bigger latex fragment
+  (setq org-format-latex-options (plist-put org-format-latex-options :scale 3.0))
+  ;; auto-toggle org latex fragment
+  (add-hook 'org-mode-hook 'org-fragtog-mode)
+  )
+
+;; = Column Indicator ==========================================================
 ;; auto-toggle column indicator (i.e. get a ruler at column 80)
 (setq-default fill-column 80)
-(add-hook 'proj-mode-hook 'display-fill-column-indicator-mode)
+(add-hook 'prog-mode-hook 'display-fill-column-indicator-mode)
 (add-hook 'text-mode-hook 'display-fill-column-indicator-mode)
 ;; exclude coq reponse and goals buffers
 (defun disable-fill-column-indicator-mode ()
   (display-fill-column-indicator-mode -1))
 (add-hook 'coq-response-mode-hook 'disable-fill-column-indicator-mode)
 (add-hook 'coq-goals-mode-hook 'disable-fill-column-indicator-mode)
+
+;; = Ligatures =================================================================
+;; Doom Emacs: https://docs.doomemacs.org/v21.12/modules/ui/ligatures/#/usage
+
+;; Enable Iosevka ligatures for programming mode.
+(after! ligature
+  (ligature-set-ligatures 'prog-mode
+                          '(
+                            "-<<" "-<" "-<-" "<--" "<---" "<<-" "<-" "->" "->>" "-->" "--->" "->-" ">-" ">>-"
+                            "=<<" "=<" "=<=" "<==" "<===" "<<=" "<=" "=>" "=>>" "==>" "===>" "=>=" ">=" ">>="
+                            "<->" "<-->" "<--->" "<---->" "<=>" "<==>" "<===>" "<====>" "::" ":::" "__"
+                            "<~" "<~~" "<~~~" "</" "</>" "/>" "~>" "~~>" "~~~>" "==" "!=" "/=" "~=" "<>" "===" "!==" "!===" "=/=" "=!="
+                            ;; "<:" ": "<".">" .">" "+*" "\=*" "=:" ":>"
+                            "(*" "\*)" "/*" "*/" "[|" "|]" "{|" "|}" "++" "+++" "\\/" "/\\" "|-" "-|" "<!--" "<!---"
+                            ))
+
+  ;; Enables ligature globally. You can also use `ligature-mode` for specific modes.
+  (global-ligature-mode t))
+
+;; = Coq =======================================================================
+
+;; Font: Iosevka Custom Coq (with Coq ligations), built via
+;; https://typeof.net/Iosevka/customizer
+(add-hook 'coq-mode-hook (lambda ()
+                           (setq buffer-face-mode-face '(:family "Iosevka Custom Coq"))
+                           (buffer-face-mode)))
+
+;; Add more prettify-symbol entries (must run before loading company-coq).
+(add-hook 'coq-mode-hook
+          (lambda ()
+            (setq-local prettify-symbols-alist
+                        '((":=" . ?≜)
+                          ("Proof." . ?∵)
+                          ("Qed." . ?■)
+                          ("Defined." . ?□)
+                          ;; ("Admitted." . ?🫣)
+                          ("\\*" . ?✻)))))
+
+;; Remove some entries added by company-coq (must run after loading company-coq).
+;;
+;; company-coq has the following prettify symbols entries:
+;;   ("-->" . ?⟶)
+;;   ("<--" . ?⟵)
+;;   ("<-->" . ?⟷)
+;;   ("==>" . ?⟹)
+;;   ("<==" . ?⟸)
+;;   ("~~>" . ?⟿)
+;;   ("<~~" . ?⬳)
+;; However, in Iosevka, the long arrow unicode ⟶ looks like the short arrow
+;; unicode →. Under auto-composition-mode, the different arrows are pretty
+;; enough, so I will simply remove them from the prettify-symbols-alist.
+;; Another way to avoid the confusion is to use different fonts, such as
+;; Iosevka Term.
+(add-hook 'company-coq-mode-hook
+          (lambda ()
+            (setq-local prettify-symbols-alist
+                        (delq nil
+                              (mapcar (lambda (pair)
+                                        (if (member (car pair) '("-->" "<--" "<-->" "==>" "<==" "~~>" "<~~"))
+                                            nil
+                                          pair))
+                                      prettify-symbols-alist)))))
+
+;; = Unicode Input =============================================================
+;; Check: https://gitlab.mpi-sws.org/iris/iris/-/blob/master/docs/editor.md
+(require 'math-symbol-lists)
+;; automatically use math input method for Coq files
+(add-hook 'coq-mode-hook (lambda () (set-input-method "math")))
+                                        ; Input method for the minibuffer
+(defun my-inherit-input-method ()
+  "Inherit input method from `minibuffer-selected-window'."
+  (let* ((win (minibuffer-selected-window))
+         (buf (and win (window-buffer win))))
+    (when buf
+      (activate-input-method (buffer-local-value 'current-input-method buf)))))
+(add-hook 'minibuffer-setup-hook #'my-inherit-input-method)
+                                        ; Define the actual input method
+(quail-define-package "math" "UTF-8" "Ω" t)
+(quail-define-rules ; add whatever extra rules you want to define here...
+ ("\\fun"    ?λ)
+ ("\\mult"   ?⋅)
+ ("\\ent"    ?⊢)
+ ("\\valid"  ?✓)
+ ("\\diamond" ?◇)
+ ("\\box"    ?□)
+ ("\\bbox"   ?■)
+ ("\\later"  ?▷)
+ ("\\pred"   ?φ)
+ ("\\and"    ?∧)
+ ("\\or"     ?∨)
+ ("\\comp"   ?∘)
+ ("\\ccomp"  ?◎)
+ ("\\all"    ?∀)
+ ("\\ex"     ?∃)
+ ("\\to"     ?→)
+ ("\\sep"    ?∗)
+ ("\\lc"     ?⌜)
+ ("\\rc"     ?⌝)
+ ("\\Lc"     ?⎡)
+ ("\\Rc"     ?⎤)
+ ("\\lam"    ?λ)
+ ("\\empty"  ?∅)
+ ("\\Lam"    ?Λ)
+ ("\\Sig"    ?Σ)
+ ("\\-"      ?∖)
+ ("\\aa"     ?●)
+ ("\\af"     ?◯)
+ ("\\auth"   ?●)
+ ("\\frag"   ?◯)
+ ("\\iff"    ?↔)
+ ("\\gname"  ?γ)
+ ("\\incl"   ?≼)
+ ("\\latert" ?▶)
+ ("\\update" ?⇝)
+
+ ;; accents (for iLöb)
+ ("\\\"o" ?ö)
+
+ ;; subscripts and superscripts
+ ;; ("^^+" ?⁺) ("__+" ?₊) ("^^-" ?⁻)
+ ;; ("__0" ?₀) ("__1" ?₁) ("__2" ?₂) ("__3" ?₃) ("__4" ?₄)
+ ;; ("__5" ?₅) ("__6" ?₆) ("__7" ?₇) ("__8" ?₈) ("__9" ?₉)
+
+ ;; ("__a" ?ₐ) ("__e" ?ₑ) ("__h" ?ₕ) ("__i" ?ᵢ) ("__k" ?ₖ)
+ ;; ("__l" ?ₗ) ("__m" ?ₘ) ("__n" ?ₙ) ("__o" ?ₒ) ("__p" ?ₚ)
+ ;; ("__r" ?ᵣ) ("__s" ?ₛ) ("__t" ?ₜ) ("__u" ?ᵤ) ("__v" ?ᵥ) ("__x" ?ₓ)
+ )
+;; (mapc (lambda (x)
+;;         (if (cddr x)
+;;             (quail-defrule (cadr x) (car (cddr x)))))
+;;                                         ; need to reverse since different emacs packages disagree on whether
+;;                                         ; the first or last entry should take priority...
+;;                                         ; see <https://mattermost.mpi-sws.org/iris/pl/46onxnb3tb8ndg8b6h1z1f7tny> for discussion
+;;       (reverse (append math-symbol-list-basic math-symbol-list-extended)))

@@ -32,11 +32,11 @@
        doom              ; what makes DOOM look the way it does
        doom-dashboard    ; a nifty splash screen for Emacs
        doom-quit         ; DOOM quit-message prompts when you quit Emacs
-       ;; (emoji +unicode)  ; 🙂
+       (emoji +ascii)  ; 🙂
        hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
        ;;hydra
        indent-guides     ; highlighted indent columns
-       ligatures         ; ligatures and symbols to make your code pretty again
+       (ligatures +iosevka) ; ligatures and symbols to make your code pretty again
        minimap           ; show a map of the code on the side
        modeline          ; snazzy, Atom-inspired modeline, plus API
        nav-flash         ; blink cursor line after big motions
@@ -136,7 +136,7 @@
        ;;fsharp            ; ML stands for Microsoft's Language
        ;;fstar             ; (dependent) types and (monadic) effects and Z3
        ;;gdscript          ; the language you waited for
-       (go +lsp)         ; the hipster dialect
+       ;;(go +lsp)         ; the hipster dialect
        ;;(graphql +lsp)    ; Give queries a REST
        (haskell +lsp)    ; a language that's lazier than I am
        ;;hy                ; readability of scheme w/ speed of python
@@ -169,7 +169,7 @@
        scala             ; java, but good
        ;;(scheme +guile)   ; a fully conniving family of lisps
        sh                ; she sells {ba,z,fi}sh shells on the C xor
-       sml
+       ;;sml
        ;;solidity          ; do you need a blockchain? No.
        ;;swift             ; who asked for emoji variables?
        ;;terra             ; Earth and Moon in alignment for performance.
