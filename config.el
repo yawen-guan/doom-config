@@ -140,7 +140,9 @@
                           ("Qed." . ?■)
                           ("Defined." . ?□)
                           ;; ("Admitted." . ?🫣)
-                          ("\\*" . ?✻)))))
+                          ("\\*" . ?✻)
+                          ("\\*+" . ?✢)
+                          ))))
 
 ;; Remove some entries added by company-coq (must run after loading company-coq).
 ;;
