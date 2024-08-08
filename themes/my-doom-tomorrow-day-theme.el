@@ -28,14 +28,15 @@ Can be an integer to determine the exact padding."
 ;;
 ;;; Theme definition
 
-(def-doom-theme doom-tomorrow-day
-                "A light theme based off of Chris Kempson's Tomorrow Dark."
+(def-doom-theme my-doom-tomorrow-day
+                "A customized version of doom-tomorrow-day by Yawen Guan."
 
                 ;; name        gui       256       16
                 ((bg         '("#ffffff" "white"   "white" ))
-                 (bg-alt     '("#f2f2f2" nil       nil     ))
+                 ;; (bg-alt     '("#f2f2f8" nil       nil     ))
+                 (bg-alt     '("#f7f7fc" nil       nil     ))
                  (base0      '("#f2f2f2" "white"   "white" ))
-                 (base1      '("#e4e4e4" "#e4e4e4"         ))
+                 (base1      '("#ece6fa" "#ece6fa"         ))
                  (base2      '("#dedede" "#cccccc"         ))
                  (base3      '("#d6d4d4" "#cccccc" "silver"))
                  (base4      '("#C0bfbf" "#c0c0c0" "silver"))
@@ -58,6 +59,8 @@ Can be an integer to determine the exact padding."
                  (violet     '("#8959a8" "#996699" "brightmagenta"))
                  (cyan       '("#8abeb7" "#8abeb7" "cyan"))
                  (dark-cyan  (doom-lighten cyan 0.4))
+                 (light-violet '("#ece6fa" "#e1dbf5" "lightmagenta"))
+                 (gray-violet  '("#aca3c7" "#aca3c7" "darkmagenta"))
 
                  ;; face categories
                  (highlight      blue)
@@ -85,9 +88,9 @@ Can be an integer to determine the exact padding."
 
                  ;; custom categories
                  (org-block-bg             (doom-lighten bg-alt 0.3))
-                 (modeline-bg              `(,(doom-lighten (car bg-alt) 0.4) ,@(cdr base3)))
+                 (modeline-bg              `(,(car gray-violet) ,@(cdr base3)))
                  (modeline-bg-alt          bg)
-                 (modeline-bg-inactive     `(,(doom-darken (car bg) 0.04) ,@(cdr base1)))
+                 (modeline-bg-inactive     `(,(car bg-alt) ,@(cdr base1)))
                  (modeline-bg-alt-inactive bg)
                  (modeline-fg              fg)
                  (modeline-fg-inactive     comments)
@@ -103,6 +106,7 @@ Can be an integer to determine the exact padding."
                 (((font-lock-doc-face &override) :slant 'italic)
                  ((line-number &override) :foreground base4)
                  ((line-number-current-line &override) :foreground base8)
+                 (hl-line :background light-violet)
                  (mode-line
                   :background modeline-bg :foreground modeline-fg
                   :box (if -modeline-pad `(:line-width ,-modeline-pad :color ,modeline-bg)))

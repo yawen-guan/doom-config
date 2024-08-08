@@ -40,7 +40,9 @@
 ;; `load-theme' function. This is the default:
 ;; (setq doom-theme 'doom-one)
 ;; (setq doom-theme 'doom-one-light)
-(setq doom-theme 'doom-tomorrow-day)
+;; (setq doom-theme 'doom-tomorrow-night)
+;; (setq doom-theme 'doom-tomorrow-day)
+(setq doom-theme 'my-doom-tomorrow-day)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
