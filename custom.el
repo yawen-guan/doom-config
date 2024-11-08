@@ -14,3 +14,4 @@
 (put 'projectile-grep 'disabled nil)
 (put 'company-coq-fold 'disabled nil)
 (put 'customize-variable 'disabled nil)
+(put 'projectile-ag 'disabled nil)
