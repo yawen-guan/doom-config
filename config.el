@@ -86,6 +86,13 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
+;; = Git =======================================================================
+
+(map! :after magit
+      :map magit-mode-map
+      :leader
+      :desc "Magit status" "m s" #'magit-status)
+
 ;; = Org Mode ==================================================================
 (after! org
   ;; bigger latex fragment
