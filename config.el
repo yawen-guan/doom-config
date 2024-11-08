@@ -132,6 +132,17 @@
 
 ;; = Coq =======================================================================
 
+;; Key binding
+(map! :after company-coq
+      :map company-coq-map
+      :leader
+      :desc "Jump to definition" "d" #'company-coq-jump-to-definition)
+
+;; Proof General
+;;
+;; Set hybrid window display.
+(setq-default proof-three-window-mode-policy 'hybrid)
+
 ;; Font: Iosevka Custom Coq (with Coq ligations), built via
 ;; https://typeof.net/Iosevka/customizer
 (add-hook 'coq-mode-hook (lambda ()
@@ -227,9 +238,16 @@
  ("\\incl"   ?≼)
  ("\\latert" ?▶)
  ("\\update" ?⇝)
-
  ;; accents (for iLöb)
  ("\\\"o" ?ö)
+ ;;
+ ("\\llc"    ?⟬)
+ ("\\rrc"    ?⟭)
+ ("\\bb"     ?ϐ)
+ ("\\be"     ?▢) ;; empty box
+ ("\\bf"     ?■) ;; fully-filled box
+ ("\\bh"     ?▧) ;; half-filled box
+ ("\\kop"    ?ϟ)
 
  ;; subscripts and superscripts
  ;; ("^^+" ?⁺) ("__+" ?₊) ("^^-" ?⁻)
@@ -247,3 +265,18 @@
 ;;                                         ; the first or last entry should take priority...
 ;;                                         ; see <https://mattermost.mpi-sws.org/iris/pl/46onxnb3tb8ndg8b6h1z1f7tny> for discussion
 ;;       (reverse (append math-symbol-list-basic math-symbol-list-extended)))
+
+
+;; = Treemacs ==================================================================
+
+(after! treemacs
+
+  (defun treemacs-ignore-coq-generated-files (filename absolute-path)
+    "Ignore coq-generated files in treemacs."
+    (or (string-match-p "\\.\\(vos\\|vok\\|vo\\|glob\\|aux\\)$" filename)
+        (string-equal filename ".lia.cache")))
+
+  (add-to-list 'treemacs-ignored-file-predicates #'treemacs-ignore-coq-generated-files))
+
+;; = Whitespace ================================================================
+;; (setq-default show-trailing-whitespace t)
