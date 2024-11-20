@@ -125,14 +125,32 @@
 
 ;; = Coq =======================================================================
 
-;; Key binding
-(map! :after company-coq
-      :map company-coq-map
-      :leader
-      :desc "Jump to definition" "d" #'company-coq-jump-to-definition)
+;; Keybindings
+
+(after! company-coq
+  (dolist (state '(normal visual motion))
+    (evil-define-key state company-coq-map
+      (kbd "SPC d d") #'company-coq-jump-to-definition
+      (kbd "SPC d f") #'company-coq-fold
+      (kbd "SPC d u") #'company-coq-unfold
+      (kbd "SPC d c a x") #'company-coq-lemma-from-goal
+      )))
+
+(after! coq-mode
+  (dolist (state '(normal visual motion))
+    (evil-define-key state coq-mode-map
+      (kbd "SPC m .") nil ;; unbind the previous proof-goto-point
+      (kbd "SPC d l") #'proof-goto-point
+      (kbd "SPC m [") nil ;; unbind the previous proof-undo-last-successful-command
+      (kbd "SPC d k") #'proof-undo-last-successful-command
+      (kbd "SPC m ]") nil ;; unbind the previous proof-assert-next-command-interactive
+      (kbd "SPC d j") #'proof-assert-next-command-interactive
+      (kbd "SPC m p p") nil ;; unbind the previous proof-process-buffer
+      (kbd "SPC d b") #'proof-process-buffer
+      )))
 
 ;; Proof General
-;;
+
 ;; Set hybrid window display.
 (setq-default proof-three-window-mode-policy 'hybrid)
 
