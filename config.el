@@ -139,6 +139,7 @@
 (after! coq-mode
   (dolist (state '(normal visual motion))
     (evil-define-key state coq-mode-map
+      (kbd "SPC m s") #'coq-Search
       (kbd "SPC m .") nil ;; unbind the previous proof-goto-point
       (kbd "SPC d l") #'proof-goto-point
       (kbd "SPC m [") nil ;; unbind the previous proof-undo-last-successful-command
