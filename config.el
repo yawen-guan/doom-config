@@ -254,6 +254,8 @@
  ;;
  ("\\llc"    ?⟬)
  ("\\rrc"    ?⟭)
+ ("\\llb"    ?⟦)
+  ("\\rrb"    ?⟧)
  ("\\bb"     ?ϐ)
  ("\\be"     ?▢) ;; empty box
  ("\\bf"     ?■) ;; fully-filled box
