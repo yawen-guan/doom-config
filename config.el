@@ -257,6 +257,7 @@
  ("\\rrc"    ?⟭)
  ("\\llb"    ?⟦)
   ("\\rrb"    ?⟧)
+ ("\\lsg"    ?ɣ) ;; latin small letter gamma
  ("\\bb"     ?ϐ)
  ("\\be"     ?▢) ;; empty box
  ("\\bf"     ?■) ;; fully-filled box
