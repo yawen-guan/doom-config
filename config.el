@@ -94,6 +94,15 @@
   (add-hook 'org-mode-hook 'org-fragtog-mode)
   )
 
+;; = Centaur Tabs ==============================================================
+(after! centaur-tabs
+  (dolist (state '(normal visual motion))
+    (evil-define-key state centaur-tabs-mode-map
+      (kbd "SPC a h") #'centaur-tabs-backward-tab
+      (kbd "SPC a l") #'centaur-tabs-forward-tab
+      (kbd "SPC a j") #'centaur-tabs-ace-jump
+      )))
+
 ;; = Column Indicator ==========================================================
 ;; auto-toggle column indicator (i.e. get a ruler at column 80)
 (setq-default fill-column 80)
