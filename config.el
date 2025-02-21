@@ -304,3 +304,19 @@
 
 ;; = Whitespace ================================================================
 ;; (setq-default show-trailing-whitespace t)
+
+;; = Windows ===================================================================
+
+(defun find-file-other-window-left ()
+  "Split the current window vertically, open a file in the left window while keeping focus on the original window."
+  (interactive)
+  (let ((filename (read-file-name "Find file: "))  ;; Prompt for file first
+        (original-window (selected-window)))       ;; Store the current (right) window
+    (let ((new-window (split-window (selected-window) (- (floor (window-width) 2)) 'left)))
+      (select-window new-window)   ;; Move to the new left window
+      (find-file filename)         ;; Open the selected file
+      (select-window original-window)))) ;; Return focus to the original right window
+
+(map! :leader
+      (:prefix "f" ;; Under "SPC-f"
+       :desc "Find file in left window" "h" #'find-file-other-window-left))
