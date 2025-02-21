@@ -13,6 +13,13 @@
 (package! math-symbol-lists)
 (package! ligature)
 (package! treemacs-all-the-icons)
+;; Preview html on the fly.
+;; How:
+;; 1. start http server by `httpd-start';
+;; 2. enable `impatient-mode';
+;; 3. open `https://localhost:8080/imp' in the browser;
+;; 4. select the html file to preview.
+(package! impatient-mode)
 
 ;; To install a package directly from a remote git repo, you must specify a
 ;; `:recipe'. You'll find documentation on what `:recipe' accepts here:
