@@ -95,13 +95,21 @@
   )
 
 ;; = Centaur Tabs ==============================================================
-(after! centaur-tabs
-  (dolist (state '(normal visual motion))
-    (evil-define-key state centaur-tabs-mode-map
-      (kbd "SPC a h") #'centaur-tabs-backward-tab
-      (kbd "SPC a l") #'centaur-tabs-forward-tab
-      (kbd "SPC a j") #'centaur-tabs-ace-jump
-      )))
+(map! :leader
+      (:prefix ("a" . "tab") ;; Under "SPC-a"
+       :desc "Previous tab"              "h" #'centaur-tabs-backward-tab
+       :desc "Next tab"                  "l" #'centaur-tabs-forward-tab
+       :desc "Jump to tab"               "j" #'centaur-tabs-ace-jump
+       :desc "Kill the current buffer"   "d" (lambda () (interactive) (kill-buffer (current-buffer)))))
+))
+
+;; = Workspaces ================================================================
+(map! :leader
+      (:prefix "TAB" ;; Under "SPC-TAB"
+       :desc "Previous workspace"       "h" #'+workspace/switch-left
+       :desc "Next workspace"           "l" #'+workspace/switch-right
+       :desc "Jump to workspace"        "j" #'+workspace/switch-to
+       ))
 
 ;; = Column Indicator ==========================================================
 ;; auto-toggle column indicator (i.e. get a ruler at column 80)
