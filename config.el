@@ -278,6 +278,8 @@
  ("\\rrc"    ?⟭)
  ("\\llb"    ?⟦)
   ("\\rrb"    ?⟧)
+ ("\\llt"    ?⦗)
+  ("\\rrt"    ?⦘)
  ("\\lsg"    ?ɣ) ;; latin small letter gamma
  ("\\bb"     ?ϐ)
  ("\\be"     ?▢) ;; empty box
