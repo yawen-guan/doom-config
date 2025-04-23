@@ -105,7 +105,6 @@
        :desc "Next tab"                  "l" #'centaur-tabs-forward-tab
        :desc "Jump to tab"               "j" #'centaur-tabs-ace-jump
        :desc "Kill the current buffer"   "d" (lambda () (interactive) (kill-buffer (current-buffer)))))
-))
 
 ;; = Workspaces ================================================================
 (map! :leader
