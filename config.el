@@ -330,6 +330,12 @@
 ;; = Whitespace ================================================================
 ;; (setq-default show-trailing-whitespace t)
 
+(add-hook 'prog-mode-hook
+          (lambda ()
+            (add-hook 'before-save-hook #'delete-trailing-whitespace nil t)))
+
+(add-hook 'before-save-hook #'delete-trailing-whitespace)
+
 ;; = Windows ===================================================================
 
 (defun find-file-other-window-left ()
