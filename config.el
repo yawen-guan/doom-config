@@ -114,6 +114,8 @@
        :desc "Previous tab"              "h" #'centaur-tabs-backward-tab
        :desc "Next tab"                  "l" #'centaur-tabs-forward-tab
        :desc "Jump to tab"               "j" #'centaur-tabs-ace-jump
+       :desc "Kill other buffers"        "o" #'centaur-tabs-kill-other-buffers-in-current-group
+       :desc "Kill unmodified buffers"   "u" #'centaur-tabs-kill-unmodified-buffers-in-current-group
        :desc "Kill the current buffer"   "d" (lambda () (interactive) (kill-buffer (current-buffer)))))
 
 ;; = Workspaces ================================================================
