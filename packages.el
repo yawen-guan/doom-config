@@ -20,6 +20,7 @@
 ;; 3. open `https://localhost:8080/imp' in the browser;
 ;; 4. select the html file to preview.
 (package! impatient-mode)
+(package! org-download)
 
 ;; To install a package directly from a remote git repo, you must specify a
 ;; `:recipe'. You'll find documentation on what `:recipe' accepts here:
