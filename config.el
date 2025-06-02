@@ -98,6 +98,16 @@
   (add-hook 'org-mode-hook 'org-fragtog-mode)
   )
 
+(use-package! org-download
+  :after org
+  :config
+  (setq org-download-method 'directory)
+  (setq-default org-download-heading-lvl 'nil)
+  (setq org-download-image-org-width 600)
+  (setq org-download-link-format "[[file:%s]]\n"
+        org-download-abbreviate-filename-function #'file-relative-name)
+  (setq org-download-link-format-function #'org-download-link-format-function-default))
+
 ;; = Centaur Tabs ==============================================================
 (map! :leader
       (:prefix ("a" . "tab") ;; Under "SPC-a"
