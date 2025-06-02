@@ -291,6 +291,8 @@
   ("\\rrb"    ?⟧)
  ("\\llt"    ?⦗)
   ("\\rrt"    ?⦘)
+ ("\\lls"    ?⎡)
+ ("\\rrs"    ?⎤)
  ("\\lsg"    ?ɣ) ;; latin small letter gamma
  ("\\bb"     ?ϐ)
  ("\\be"     ?▢) ;; empty box
