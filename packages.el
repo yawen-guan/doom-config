@@ -21,6 +21,8 @@
 ;; 4. select the html file to preview.
 (package! impatient-mode)
 (package! org-download)
+;; (package! typst-ts-mode :recipe (:host nil :repo "https://git.sr.ht/~meow_king/typst-ts-mode"))
+(package! key-chord)
 
 ;; To install a package directly from a remote git repo, you must specify a
 ;; `:recipe'. You'll find documentation on what `:recipe' accepts here:

@@ -31,7 +31,7 @@
 
 ;; (setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'regular))
 
-(setq doom-font (font-spec :family "Iosevka" :size 32 :weight 'regular))
+(setq doom-font (font-spec :family "Iosevka" :size 25 :weight 'regular))
 (setq doom-symbol-font (font-spec :family "Noto Color Emoji" :size 32 :weight 'regular))
 
 
@@ -353,3 +353,54 @@
 (map! :leader
       (:prefix "f" ;; Under "SPC-f"
        :desc "Find file in left window" "h" #'find-file-other-window-left))
+
+;; = Tex =======================================================================
+
+(setq TeX-command-extra-options "-shell-escape") ;; Required by the minted package.
+(setq latex-run-command "xelatex")
+
+(use-package! key-chord
+  :config
+  (key-chord-mode 1)
+
+  (defun my/latex-insert-italic ()
+    "Insert \\textit{} and move cursor inside."
+    (interactive)
+    (insert "\\textit{}")
+    (backward-char 1))
+
+  (defun my/latex-insert-inline-code ()
+    "Insert \\texttt{} and move cursor inside."
+    (interactive)
+    (insert "\\texttt{}")
+    (backward-char 1))
+
+  (defun my/latex-insert-inline-math ()
+    "Insert \\(\\) and move cursor inside."
+    (interactive)
+    (insert "\\(\\)")
+    (backward-char 2))
+
+  ;; My custom prefix map for 'ii'
+  (defvar my/latex-ii-map (make-sparse-keymap)
+    "Keymap triggered by double 'i' chord in LaTeX mode.")
+
+  (define-key my/latex-ii-map (kbd "i") #'my/latex-insert-italic)
+  (define-key my/latex-ii-map (kbd "c") #'my/latex-insert-inline-code)
+  (define-key my/latex-ii-map (kbd "m") #'my/latex-insert-inline-math)
+
+  (add-hook 'LaTeX-mode-hook
+            (lambda ()
+              (key-chord-define-local "ii" my/latex-ii-map))))
+
+;; Visual line wrapping.
+(after! tex
+  (setq visual-fill-column-width 80)
+
+  (add-hook 'TeX-mode-hook #'visual-line-mode)
+  (add-hook 'TeX-mode-hook #'visual-fill-column-mode))
+
+(after! latex
+  (add-hook 'LaTeX-mode-hook
+            (lambda ()
+              (setq display-fill-column-indicator-column 75))))
