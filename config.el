@@ -362,8 +362,8 @@
 
 ;; = Tex =======================================================================
 
-(setq TeX-command-extra-options "-shell-escape") ;; Required by the minted package.
-(setq latex-run-command "xelatex")
+(setq TeX-command-extra-options "-file-line-error -shell-escape -synctex=1")
+(setq latex-run-command "texfot latexmk -pdf -auxdir=_build/ -emulate-aux-dir -bibtex -silent")
 
 (use-package! key-chord
   :config
