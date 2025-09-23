@@ -90,6 +90,12 @@
 (setq evil-escape-key-sequence "jk"
       evil-escape-delay 0.2) ;; adjust if it's too fast/slow
 
+;; = File ======================================================================
+(map! :leader
+      (:prefix ("f" . "file")
+       :desc "Format and save buffer"     "s" #'+format/save-buffer
+       :desc "Save buffer (no reformat)"  "o" #'+format/save-buffer-no-reformat))
+
 ;; = Org Mode ==================================================================
 (after! org
   ;; bigger latex fragment
