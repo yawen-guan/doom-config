@@ -410,3 +410,7 @@
   (add-hook 'LaTeX-mode-hook
             (lambda ()
               (setq display-fill-column-indicator-column 75))))
+
+;; = Graphviz ==================================================================
+
+(use-package! graphviz-dot-mode)

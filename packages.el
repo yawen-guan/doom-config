@@ -23,6 +23,8 @@
 (package! org-download)
 ;; (package! typst-ts-mode :recipe (:host nil :repo "https://git.sr.ht/~meow_king/typst-ts-mode"))
 (package! key-chord)
+(package! graphviz-dot-mode
+  :recipe (:host github :repo "ppareit/graphviz-dot-mode"))
 
 ;; To install a package directly from a remote git repo, you must specify a
 ;; `:recipe'. You'll find documentation on what `:recipe' accepts here:
