@@ -86,6 +86,9 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
+;; = VTerm =====================================================================
+(setq vterm-shell (executable-find "zsh"))
+
 ;; = Evil ======================================================================
 (setq evil-escape-key-sequence "jk"
       evil-escape-delay 0.2) ;; adjust if it's too fast/slow
