@@ -196,12 +196,6 @@
 ;; Set hybrid window display.
 (setq-default proof-three-window-mode-policy 'hybrid)
 
-;; Font: Iosevka Custom Coq (with Coq ligations), built via
-;; https://typeof.net/Iosevka/customizer
-(add-hook 'coq-mode-hook (lambda ()
-                           (setq buffer-face-mode-face '(:family "Iosevka Custom Coq"))
-                           (buffer-face-mode)))
-
 ;; Add more prettify-symbol entries (must run before loading company-coq).
 (add-hook 'coq-mode-hook
           (lambda ()
