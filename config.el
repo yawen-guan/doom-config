@@ -402,10 +402,11 @@
             (lambda ()
               (key-chord-define-local "ii" my/latex-ii-map))))
 
-;; Visual line wrapping.
-(after! tex
-  (setq visual-fill-column-width 80)
+;; = Visual-Line Mode ==========================================================
 
+(setq visual-fill-column-width 80)
+
+(after! tex
   (add-hook 'TeX-mode-hook #'visual-line-mode)
   (add-hook 'TeX-mode-hook #'visual-fill-column-mode))
 
@@ -413,6 +414,9 @@
   (add-hook 'LaTeX-mode-hook
             (lambda ()
               (setq display-fill-column-indicator-column 75))))
+
+(after! magit
+  (add-hook 'magit-status-mode-hook #'visual-line-mode))
 
 ;; = Graphviz ==================================================================
 
