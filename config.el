@@ -419,3 +419,14 @@
 ;; = Graphviz ==================================================================
 
 (use-package! graphviz-dot-mode)
+
+;; = Haskell ===================================================================
+
+;; (after! apheleia
+;;   ;; Define the ormolu formatter
+;;   (setf (alist-get 'ormolu apheleia-formatters)
+;;         '("ormolu" "--stdin-input-file" filepath))
+
+;;   ;; Tell Apheleia to use it for Haskell
+;;   (setf (alist-get 'haskell-mode apheleia-mode-alist) 'ormolu)
+;;   (setf (alist-get 'literate-haskell-mode apheleia-mode-alist) 'ormolu))
