@@ -193,6 +193,10 @@
 
 ;; Proof General
 
+;; Colors
+(custom-set-faces!
+  '(proof-locked-face    :background "#d1d1e3"))   ;; current locked region
+
 ;; Set hybrid window display.
 (setq-default proof-three-window-mode-policy 'hybrid)
 
