@@ -306,6 +306,7 @@
  ("\\bf"     ?■) ;; fully-filled box
  ("\\bh"     ?▧) ;; half-filled box
  ("\\kop"    ?ϟ)
+ ("\\in"     ?∈)
 
  ;; subscripts and superscripts
  ;; ("^^+" ?⁺) ("__+" ?₊) ("^^-" ?⁻)

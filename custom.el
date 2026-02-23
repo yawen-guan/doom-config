@@ -15,3 +15,4 @@
 (put 'company-coq-fold 'disabled nil)
 (put 'customize-variable 'disabled nil)
 (put 'projectile-ag 'disabled nil)
+(put 'upcase-region 'disabled nil)
