@@ -431,3 +431,38 @@
 ;;   ;; Tell Apheleia to use it for Haskell
 ;;   (setf (alist-get 'haskell-mode apheleia-mode-alist) 'ormolu)
 ;;   (setf (alist-get 'literate-haskell-mode apheleia-mode-alist) 'ormolu))
+
+;; = Obsidian ==================================================================
+
+(use-package! obsidian
+  :after markdown-mode
+  :init
+  ;; Location of obsidian vault
+  (setq obsidian-directory "~/Documents/notes")
+
+  :config
+  ;; Where new notes go
+  (setq obsidian-inbox-directory "inbox")
+
+  ;; Enable wiki-links in markdown buffers
+  (setq markdown-enable-wiki-links t)
+
+  ;; Turn on obsidian-mode automatically for notes in the vault
+  (add-hook 'markdown-mode-hook
+            (lambda ()
+              (when (and buffer-file-name
+                         (string-prefix-p (expand-file-name obsidian-directory)
+                                          (expand-file-name buffer-file-name)))
+                (obsidian-mode 1))))
+
+  ;; Backlinks buffer integration
+  (add-hook 'obsidian-mode-hook #'obsidian-backlinks-mode)
+
+  ;; Keybindings
+  (map! :map obsidian-mode-map
+        :localleader
+        "n" #'obsidian-capture
+        "l" #'obsidian-insert-link
+        "o" #'obsidian-follow-link-at-point
+        "p" #'obsidian-jump
+        "b" #'obsidian-backlink-jump))
