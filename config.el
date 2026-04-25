@@ -281,6 +281,7 @@
  ("\\Lam"    ?Λ)
  ("\\Sig"    ?Σ)
  ("\\Phi"    ?Φ)
+ ("\\ii"     ?Φ) ;; short cut
  ("\\-"      ?∖)
  ("\\aa"     ?●)
  ("\\af"     ?◯)
@@ -298,6 +299,8 @@
  ("\\rrc"    ?⟭)
  ("\\llb"    ?⟦)
   ("\\rrb"    ?⟧)
+ ("\\lcb"    ?⦃)
+  ("\\rcb"    ?⦄)
  ("\\llt"    ?⦗)
   ("\\rrt"    ?⦘)
  ("\\lls"    ?⎡)
@@ -305,12 +308,14 @@
  ("\\lsg"    ?ɣ) ;; latin small letter gamma
  ("\\bb"     ?ϐ)
  ("\\be"     ?▢) ;; empty box
+ ("\\bdot"   ?▣)
  ("\\bf"     ?■) ;; fully-filled box
  ("\\bh"     ?▧) ;; half-filled box
  ("\\kop"    ?ϟ)
  ("\\in"     ?∈)
  ("\\circ"   ?∘)
  ("\\cdot"   ?⊙)
+ ("\\lsep"   ?┆)
 
  ;; subscripts and superscripts
  ("^^+" ?⁺) ("__+" ?₊) ("^^-" ?⁻)
