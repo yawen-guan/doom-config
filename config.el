@@ -34,6 +34,12 @@
 (setq doom-font (font-spec :family "Iosevka" :size 25 :weight 'regular))
 (setq doom-symbol-font (font-spec :family "Noto Color Emoji" :size 32 :weight 'regular))
 
+;; prefer Iosevka for mathematical character
+(after! doom
+  (set-fontset-font t 'mathematical
+                    (font-spec :family "Iosevka" :size 25)
+                    nil 'prepend))
+
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
