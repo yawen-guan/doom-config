@@ -278,6 +278,7 @@
  ("\\fun"    ?λ)
  ("\\mult"   ?⋅)
  ("\\ent"    ?⊢)
+ ("\\dent"   ?⊩)
  ("\\valid"  ?✓)
  ("\\diamond" ?◇)
  ("\\box"    ?□)
@@ -292,6 +293,7 @@
  ("\\ex"     ?∃)
  ("\\to"     ?→)
  ("\\pto"    ?↦)
+ ("\\rward"  ?↣)
  ("\\sep"    ?∗)
  ("\\lc"     ?⌜)
  ("\\rc"     ?⌝)
@@ -315,6 +317,7 @@
  ("\\update" ?⇝)
  ;; accents (for iLöb)
  ("\\\"o" ?ö)
+ ("\\req" ?≗)
  ;;
  ("\\llc"    ?⟬)
  ("\\rrc"    ?⟭)
@@ -337,6 +340,57 @@
  ("\\circ"   ?∘)
  ("\\cdot"   ?⊙)
  ("\\lsep"   ?┆)
+ ("\\cplus"  ?⨁)
+ ("\\ctimes" ?⨂)
+ ("\\cup"    ?∪)
+ ("\\langle" ?⟨)
+  ("\\rangle" ?⟩)
+
+ ;; lowercase greek letters
+ ("\\ga" ?α) ("\\gb" ?β) ("\\gg" ?γ) ("\\gd" ?δ) ("\\ge" ?ε)
+ ("\\gz" ?ζ) ("\\gh" ?η) ("\\gth" ?θ) ("\\gi" ?ι) ("\\gk" ?κ)
+ ("\\gl" ?λ) ("\\gm" ?μ) ("\\gn" ?ν) ("\\gxi" ?ξ) ("\\go" ?ο)
+ ("\\gp" ?π) ("\\gr" ?ρ) ("\\gs" ?σ) ("\\gt" ?τ) ("\\gu" ?υ)
+ ("\\gph" ?φ) ("\\gch" ?χ) ("\\gps" ?ψ) ("\\gw" ?ω)
+
+ ;; uppercase greek letters
+ ("\\gA" ?Α) ("\\gB" ?Β) ("\\gG" ?Γ) ("\\gD" ?Δ) ("\\gE" ?Ε)
+ ("\\gZ" ?Ζ) ("\\gH" ?Η) ("\\gTH" ?Θ) ("\\gI" ?Ι) ("\\gK" ?Κ)
+ ("\\gL" ?Λ) ("\\gM" ?Μ) ("\\gN" ?Ν) ("\\gXI" ?Ξ) ("\\gO" ?Ο)
+ ("\\gP" ?Π) ("\\gR" ?Ρ) ("\\gS" ?Σ) ("\\gT" ?Τ) ("\\gU" ?Υ)
+ ("\\gPH" ?Φ) ("\\gCH" ?Χ) ("\\gPS" ?Ψ) ("\\gW" ?Ω)
+
+ ;; double-struck lowercase letters
+ ("\\bba" ?𝕒) ("\\bbb" ?𝕓) ("\\bbc" ?𝕔) ("\\bbd" ?𝕕) ("\\bbe" ?𝕖)
+ ("\\bbf" ?𝕗) ("\\bbg" ?𝕘) ("\\bbh" ?𝕙) ("\\bbi" ?𝕚) ("\\bbj" ?𝕛)
+ ("\\bbk" ?𝕜) ("\\bbl" ?𝕝) ("\\bbm" ?𝕞) ("\\bbn" ?𝕟) ("\\bbo" ?𝕠)
+ ("\\bbp" ?𝕡) ("\\bbq" ?𝕢) ("\\bbr" ?𝕣) ("\\bbs" ?𝕤) ("\\bbt" ?𝕥)
+ ("\\bbu" ?𝕦) ("\\bbv" ?𝕧) ("\\bbw" ?𝕨) ("\\bbx" ?𝕩) ("\\bby" ?𝕪)
+ ("\\bbz" ?𝕫)
+
+ ;; double-struck uppercase letters
+ ("\\bbA" ?𝔸) ("\\bbB" ?𝔹) ("\\bbC" ?ℂ) ("\\bbD" ?𝔻) ("\\bbE" ?𝔼)
+ ("\\bbF" ?𝔽) ("\\bbG" ?𝔾) ("\\bbH" ?ℍ) ("\\bbI" ?𝕀) ("\\bbJ" ?𝕁)
+ ("\\bbK" ?𝕂) ("\\bbL" ?𝕃) ("\\bbM" ?𝕄) ("\\bbN" ?ℕ) ("\\bbO" ?𝕆)
+ ("\\bbP" ?ℙ) ("\\bbQ" ?ℚ) ("\\bbR" ?ℝ) ("\\bbS" ?𝕊) ("\\bbT" ?𝕋)
+ ("\\bbU" ?𝕌) ("\\bbV" ?𝕍) ("\\bbW" ?𝕎) ("\\bbX" ?𝕏) ("\\bbY" ?𝕐)
+ ("\\bbZ" ?ℤ)
+
+ ;; calligraphic lowercase letters
+ ("\\cla" ?𝒶) ("\\clb" ?𝒷) ("\\clc" ?𝒸) ("\\cld" ?𝒹) ("\\cle" ?ℯ)
+ ("\\clf" ?𝒻) ("\\clg" ?ℊ) ("\\clh" ?𝒽) ("\\cli" ?𝒾) ("\\clj" ?𝒿)
+ ("\\clk" ?𝓀) ("\\cll" ?ℓ) ("\\clm" ?𝓂) ("\\cln" ?𝓃) ("\\clo" ?ℴ)
+ ("\\clp" ?𝓅) ("\\clq" ?𝓆) ("\\clr" ?𝓇) ("\\cls" ?𝓈) ("\\clt" ?𝓉)
+ ("\\clu" ?𝓊) ("\\clv" ?𝓋) ("\\clw" ?𝓌) ("\\clx" ?𝓍) ("\\cly" ?𝓎)
+ ("\\clz" ?𝓏)
+
+ ;; calligraphic uppercase letters
+ ("\\clA" ?𝒜) ("\\clB" ?ℬ) ("\\clC" ?𝒞) ("\\clD" ?𝒟) ("\\clE" ?ℰ)
+ ("\\clF" ?ℱ) ("\\clG" ?𝒢) ("\\clH" ?ℋ) ("\\clI" ?ℐ) ("\\clJ" ?𝒥)
+ ("\\clK" ?𝒦) ("\\clL" ?ℒ) ("\\clM" ?ℳ) ("\\clN" ?𝒩) ("\\clO" ?𝒪)
+ ("\\clP" ?𝒫) ("\\clQ" ?𝒬) ("\\clR" ?ℛ) ("\\clS" ?𝒮) ("\\clT" ?𝒯)
+ ("\\clU" ?𝒰) ("\\clV" ?𝒱) ("\\clW" ?𝒲) ("\\clX" ?𝒳) ("\\clY" ?𝒴)
+ ("\\clZ" ?𝒵)
 
  ;; subscripts and superscripts
  ("^^+" ?⁺) ("__+" ?₊) ("^^-" ?⁻)
