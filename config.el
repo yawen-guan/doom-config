@@ -92,6 +92,21 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
+(setq auth-sources '("~/.authinfo.gpg"))
+
+;; See: https://docs.magit.vc/forge/Setup-for-Another-Gitlab-Instance.html
+(after! forge
+  (push '("gitlab.epfl.ch"              ; GITHOST
+          "gitlab.epfl.ch/api/v4"       ; APIHOST
+          "gitlab.epfl.ch"              ; WEBHOST / INSTANCE-ID
+          forge-gitlab-repository)   ; CLASS
+        forge-alist))
+
+(setq pr-review-forges-alist
+      '(("github.com" . (github nil nil)) ;; default, reads api-host & username from ghub config
+        ("gitlab.com" . (gitlab nil nil))
+        ("gitlab.epfl.ch" . (gitlab "gitlab.epfl.ch/api/v4" "yguan"))))
+
 ;; = VTerm =====================================================================
 (setq vterm-shell (executable-find "zsh"))
 
