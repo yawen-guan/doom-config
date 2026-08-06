@@ -553,3 +553,7 @@
         "o" #'obsidian-follow-link-at-point
         "p" #'obsidian-jump
         "b" #'obsidian-backlink-jump))
+
+;; = Emoji =====================================================================
+(after! emojify
+  (global-emojify-mode -1))
