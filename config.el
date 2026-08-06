@@ -31,13 +31,13 @@
 
 ;; (setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'regular))
 
-(setq doom-font (font-spec :family "Iosevka" :size 25 :weight 'regular))
-(setq doom-symbol-font (font-spec :family "Noto Color Emoji" :size 32 :weight 'regular))
+(setq doom-font (font-spec :family "Iosevka" :size 12 :weight 'regular))
+(setq doom-symbol-font (font-spec :family "Noto Color Emoji" :size 12 :weight 'regular))
 
 ;; prefer Iosevka for mathematical character
 (after! doom
   (set-fontset-font t 'mathematical
-                    (font-spec :family "Iosevka" :size 25)
+                    (font-spec :family "Iosevka" :size 12)
                     nil 'prepend))
 
 
